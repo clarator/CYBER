@@ -22,12 +22,12 @@ namespace XXEExamples.Tests
 
                 using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(xml)))
                 {
-                    XmlReader reader = XmlReader.Create(stream, settings);
-
-                    var xmlDocument = new XmlDocument();
-                    xmlDocument.XmlResolver = new XmlUrlResolver();
-                    xmlDocument.Load(reader);
-                    return xmlDocument.InnerText;
+                    using(XmlReader reader = XmlReader.Create(stream, settings)){
+                        var xmlDocument = new XmlDocument();
+                        xmlDocument.XmlResolver = new XmlUrlResolver();
+                        xmlDocument.Load(reader);
+                        return xmlDocument.InnerText;
+                    }                    
                 }
             }, false);
         }
