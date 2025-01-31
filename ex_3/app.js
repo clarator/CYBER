@@ -1,14 +1,18 @@
-// Importer Express
+//vulnérabilité XSS
+
+//importe le module express
 const express = require('express');
+//crée une application express
 const app = express();
+//définit le port d'écoute du serveur
 const port = 3000;
 
-// Définir un gestionnaire pour la route principale
+//définit un gestionnaire pour la route principale
 app.get('/', (req, res) => {
-  // Récupérer le paramètre 'name' dans l'URL, ou 'Guest' si non spécifié
+  //récupère le paramètre 'name' dans l'URL, ou 'Guest' si non spécifié
   const userName = req.query.name || 'Guest';
 
-  // Cette ligne est vulnérable à une attaque XSS : le nom de l'utilisateur est injecté dans la page HTML sans validation
+  //ligne est vulnérable à une attaque XSS : le nom de l'utilisateur est injecté dans la page HTML sans validation
   res.send(`
     <html>
       <head>
